@@ -28,7 +28,8 @@ class Game:
     return random.choice(tuple(self.open))
 
   def set_direction(self, direction):
-    self.direction = direction
+    if (self.direction == UP and direction != DOWN) or (self.direction == DOWN and direction != UP) or (self.direction == LEFT and direction != RIGHT) or (self.direction == RIGHT and direction != LEFT):
+      self.direction = direction
 
   def update(self):
     head = self.snake[-1]
@@ -44,6 +45,7 @@ class Game:
     if new in self.open:
       self.open.remove(new) 
       self.snake.append(new) 
+      self.open.add(self.snake[0])
       self.snake = self.snake[1:]
     else:
       self.alive = False
