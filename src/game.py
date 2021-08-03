@@ -13,6 +13,7 @@ STARTING_DIRECTION = RIGHT
 
 SNAKE_Y = 0
 SNAKE_X = 1
+SNAKE_DELTA = 1
 
 class Game:
   def __init__(self, height=HEIGHT//BLOCK_DIM, width=WIDTH//BLOCK_DIM):
@@ -32,13 +33,13 @@ class Game:
   def update(self):
     head = self.snake[-1]
     if self.direction == UP:
-      new = (head[0] - 1, head[1]) 
+      new = (head[SNAKE_Y] - SNAKE_DELTA, head[SNAKE_X]) 
     elif self.direction == DOWN:
-      new = (head[0] + 1, head[1]) 
+      new = (head[SNAKE_Y] + SNAKE_DELTA, head[SNAKE_X]) 
     elif self.direction == LEFT:
-      new = (head[0], head[1] - 1) 
+      new = (head[SNAKE_Y], head[SNAKE_X] - SNAKE_DELTA) 
     elif self.direction == RIGHT:
-      new = (head[0], head[1] + 1) 
+      new = (head[SNAKE_Y], head[SNAKE_X] + SNAKE_DELTA) 
 
     if new in self.open:
       self.open.remove(new) 
