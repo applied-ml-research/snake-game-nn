@@ -36,7 +36,7 @@ def update(root, canvas, gm):
 
   next_buffer=[]
   for body in gm.snake:
-    next_buffer.append(canvas.create_rectangle(body[game.SNAKE_X], body[game.SNAKE_Y], body[game.SNAKE_X] + game.BLOCK_DIM, body[game.SNAKE_Y] + game.BLOCK_DIM, fill=SNAKE_COLOR))
+    next_buffer.append(canvas.create_rectangle(body[game.SNAKE_X] * game.BLOCK_DIM, body[game.SNAKE_Y] * game.BLOCK_DIM, (body[game.SNAKE_X] + 1) * game.BLOCK_DIM, (body[game.SNAKE_Y] + 1) * game.BLOCK_DIM, fill=SNAKE_COLOR))
   canvas.delete(*canvas_buffer)
   canvas_buffer = next_buffer
   root.after(EVERY, update, root, canvas, gm) 
