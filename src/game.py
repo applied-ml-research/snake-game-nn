@@ -9,11 +9,10 @@ DOWN = 1
 LEFT = 2
 RIGHT = 3
 
-class SnakeBody:
-  def __init__(self, y, x):
-    self.y = y
-    self.x = x
-    self.next = None
+STARTING_DIRECTION = RIGHT
+
+SNAKE_Y = 0
+SNAKE_X = 1
 
 class Game:
   def __init__(self, height=HEIGHT//BLOCK_DIM, width=WIDTH//BLOCK_DIM):
@@ -21,7 +20,7 @@ class Game:
     self.width = width
     self.open = {(y, x) for y in range(height) for x in range(width)}   
     self.snake = [(height//2, width//2)]
-    self.direction = RIGHT
+    self.direction = STARTING_DIRECTION
     self.alive = True
 
   def __pick_open_square(self):
@@ -47,3 +46,7 @@ class Game:
       self.snake = self.snake[1:]
     else:
       self.alive = False
+
+  def cleanup(self):
+    del self.open
+    del self.snake
